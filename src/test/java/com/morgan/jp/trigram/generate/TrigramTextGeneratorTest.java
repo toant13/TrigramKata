@@ -2,12 +2,9 @@ package com.morgan.jp.trigram.generate;
 
 import java.io.File;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.text.WordUtils;
 import org.junit.Test;
 
 import com.morgan.jp.trigram.loader.TrigramMapAdjWordDictionary;
@@ -15,12 +12,12 @@ import com.morgan.jp.trigram.loader.TrigramMapAdjWordDictionary;
 public class TrigramTextGeneratorTest {
 
 	@Test
-	public void test() throws Exception {			
-		URL inputURL = getClass().getResource(
-				File.separator + "one_page_input.txt");
-		
+	public void test() throws Exception {	
 //		URL inputURL = getClass().getResource(
-//				File.separator + "Tom_Swift.txt");
+//				File.separator + "one_page_input.txt");
+		
+		URL inputURL = getClass().getResource(
+				File.separator + "Tom_Swift.txt");
 
 
 		String inputLocation = inputURL.getPath();
@@ -33,10 +30,9 @@ public class TrigramTextGeneratorTest {
 		
 		
 		
-		String s = trigramGenerator.generateNewText(100);
+		String s = trigramGenerator.generateNewText();
 		System.out.println(s);
-		
-		
+
 	}
 
 }

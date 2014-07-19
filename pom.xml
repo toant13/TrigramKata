@@ -4,7 +4,37 @@
 	<groupId>org.morgan.jp</groupId>
 	<artifactId>TrigamKata</artifactId>
 	<version>1</version>
+	
+	<properties>
+        <slf4j.version>1.7.7</slf4j.version>
+    </properties>
+	
+	<build>
+        <plugins>
 
+            <plugin>
+                <groupId>com.zenjava</groupId>
+                <artifactId>javafx-maven-plugin</artifactId>
+                <version>2.0</version>
+                <configuration>
+
+                    <!-- executable JAR file is built by default (not optional at this stage) -->
+                    <mainClass>com.morgan.jp.app.TrigramApp</mainClass>
+
+                    <!-- optionally override settings (such as jar file name, html file, etc) -->
+                    <jarFileName>trigram-app.jar</jarFileName>
+                    <webstart>
+                        <requiresAllPermissions>true</requiresAllPermissions>
+                    </webstart>
+                    <nativeInstallers/>
+
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+	
+	
 	<dependencies>
 		<dependency>
 			<groupId>junit</groupId>
@@ -12,9 +42,26 @@
 			<version>4.11</version>
 		</dependency>
 		
-		
-		
-
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>jcl-over-slf4j</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>log4j</groupId>
+            <artifactId>log4j</artifactId>
+            <version>1.2.16</version>
+        </dependency>
 		
 		<dependency>
 			<groupId>org.apache.commons</groupId>
@@ -22,6 +69,13 @@
   			<version>3.3.2</version>
 		</dependency>
 		
+		<dependency>
+		  <groupId>com.oracle</groupId>
+		  <artifactId>javafx</artifactId>
+		  <version>2.2.3</version>
+		  <scope>system</scope>
+		  <systemPath>${java.home}/lib/jfxrt.jar</systemPath>
+		</dependency>
 		
 		
 	</dependencies>
