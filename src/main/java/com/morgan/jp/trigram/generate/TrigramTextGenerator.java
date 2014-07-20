@@ -11,8 +11,11 @@ import java.util.Random;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.text.WordUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import com.morgan.jp.trigram.loader.AdjacentWordDictionary;
+import com.morgan.jp.trigram.loader.TrigramMapAdjWordDictionary;
 
 /**
  * @author toantran
@@ -21,6 +24,8 @@ import com.morgan.jp.trigram.loader.AdjacentWordDictionary;
  * 
  */
 public class TrigramTextGenerator implements TextGenerator {
+	private static final Logger log = LoggerFactory
+			.getLogger(TrigramMapAdjWordDictionary.class);
 	private Properties prop = new Properties();
 
 	// End sentence punctuation list
@@ -38,10 +43,17 @@ public class TrigramTextGenerator implements TextGenerator {
 	 */
 	public TrigramTextGenerator(AdjacentWordDictionary adjWordDictionary)
 			throws IOException {
+
+		if(adjWordDictionary == null || adjWordDictionary.size() ==0){
+			log.error("The given dictionary is null or is empty");
+			throw new IllegalArgumentException("The given dictionary is null or is empty");
+		}else{
+			this.adjWordDictionary = adjWordDictionary;
+		}
+
 		prop.load(getClass().getResourceAsStream(
 				File.separator + "trigram.properties"));
 
-		this.adjWordDictionary = adjWordDictionary;
 		punctuationList = new ArrayList<Character>();
 		punctuationList.add('?');
 		punctuationList.add('.');
@@ -57,6 +69,7 @@ public class TrigramTextGenerator implements TextGenerator {
 	 * @return integer of random paragraph size
 	 */
 	private int getRandomParagraphSize() {
+		log.debug("getRandomParagraphSize method");
 		Random random = new Random();
 		return random.nextInt(Integer.parseInt(prop
 				.getProperty("paragraph_range")))
@@ -142,6 +155,7 @@ public class TrigramTextGenerator implements TextGenerator {
 	 * @return Correctly formatted string
 	 */
 	private String formatOutput(List<String> outputList) {
+		log.debug("formatOutput method");
 		String eol = System.getProperty("line.separator");
 		int paragraphSize = getRandomParagraphSize();
 
@@ -184,10 +198,12 @@ public class TrigramTextGenerator implements TextGenerator {
 	 * @return character primitive of end of sentence punctuation mark
 	 */
 	private char getRandomPunctuation() {
+		log.debug("getRandomPunctuation method");
 		if (punctuationList.size() > 0) {
 			Random random = new Random();
 			return punctuationList.get(random.nextInt(punctuationList.size()));
 		} else {
+			log.error("Punctuation list was never created");
 			throw new IllegalStateException(
 					"Punctuation list was never created");
 		}
@@ -203,7 +219,9 @@ public class TrigramTextGenerator implements TextGenerator {
 	 *            String to execute a quote check on
 	 * @return Newly formatted string incorrect format
 	 */
-	private String quoteCheck(String word) {
+	public String quoteCheck(String word) {
+		log.debug("quoteCheck method");
+
 		if (word.contains("\"")) {
 			if (word.indexOf("\"") == 0) {
 				if (quoteFlag) {
@@ -243,7 +261,8 @@ public class TrigramTextGenerator implements TextGenerator {
 	 *            The key in a list form
 	 * @return String to be used for generated text
 	 */
-	private String getWord(String searchKey, List<String> keySplit) {
+	public String getWord(String searchKey, List<String> keySplit) {
+		log.debug("getWord method");
 
 		// Check if search key ends with a sentence ending punctuation (ie:
 		// period, question mark, exclamation mark) only when not an
@@ -300,15 +319,21 @@ public class TrigramTextGenerator implements TextGenerator {
 	 * Combines lists from special keys (ie keys with punctuations) and
 	 * non-specials keys and returns random string from the consolidated list
 	 * 
-	 * @param searchKey Original unaltered search key
-	 * @param nextKeyStart First string of next key
-	 * @param specialCaseList List of string from special keys
-	 * @param regularCaseList List of strings from non-special keys
+	 * @param searchKey
+	 *            Original unaltered search key
+	 * @param nextKeyStart
+	 *            First string of next key
+	 * @param specialCaseList
+	 *            List of string from special keys
+	 * @param regularCaseList
+	 *            List of strings from non-special keys
 	 * @return random words form the two lists
 	 */
-	private String getWordFromSpecialCaseKey(String searchKey,
+	public String getWordFromSpecialCaseKey(String searchKey,
 			String nextKeyStart, List<String> specialCaseList,
 			List<String> regularCaseList) {
+		log.debug("getWordFromSpecialCaseKey method");
+
 		if (regularCaseList != null) {
 
 			// consolidate all available words two one list
@@ -341,10 +366,13 @@ public class TrigramTextGenerator implements TextGenerator {
 	 * @return random string
 	 */
 	private String getRandomString(List<String> list) {
+		log.debug("getRandomString method");
+
 		if (list.size() > 0) {
 			Random random = new Random();
 			return list.get(random.nextInt(list.size()));
 		} else {
+			log.error("List to find random string was empty");
 			throw new IllegalArgumentException(
 					"List to find random string was empty");
 		}
