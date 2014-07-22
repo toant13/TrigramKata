@@ -46,7 +46,7 @@ public class TrigramMapAdjWordDictionary implements AdjacentWordDictionary {
 					key.append(" ");
 				}
 				key.append(wordArray[i + (ADJACENT_WORD_MAX - 1)]);
-				List<String> valueList = dictionary.get(key);
+				List<String> valueList = dictionary.get(key.toString());
 
 				String value = wordArray[i + ADJACENT_WORD_MAX];
 				if (valueList == null) {

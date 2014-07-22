@@ -41,6 +41,28 @@ public class TrigramMapAdjWordDictionaryTest {
 		assertEquals("Dictionary should have been created with one input", 1,
 				trigramDictionary.size());
 	}
+	
+	/**
+	 * Tests loadAdjWordDictionary with an input file containing "this is one this is two". Check if
+	 * dictionary is created and correct size (3).
+	 * 
+	 * @throws Exception
+	 *             If there is a file loading error
+	 */
+	@Test
+	public void loadAdjWordDictionary_MultiValueInput_DictionaryCreatedWithCorrectSize()
+			throws Exception {
+		URL inputURL = getClass().getResource("/multivalue_input.txt");
+
+		String inputLocation = inputURL.getPath();
+		File inputFile = new File(inputLocation);
+
+		TrigramMapAdjWordDictionary trigramDictionary = new TrigramMapAdjWordDictionary();
+		trigramDictionary.loadAdjWordDictionary(inputFile);
+
+		assertEquals("Dictionary should have been created with one input", 3,
+				trigramDictionary.size());
+	}
 
 	/**
 	 * Tests loadAdjWordDictionary method with two word input file. The file

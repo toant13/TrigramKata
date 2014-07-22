@@ -1,0 +1,40 @@
+INSTALL GUIDE
+=====================
+Running from Command line (Requires maven to be installed on machine)
+
+1.) If maven is not installed on your computer. Please refer to http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html to install
+
+2.) Once machine has maven, cd into the project directory.  The project directory should contain at minimum: pom.xml, README, and a src folder.
+
+3.) This project takes advantage of a JavaFX library to create a User Interface.  This requires class path fix on fresh machine. Type and run the following commands in the command line. (More information on the fix can be found at http://zenjava.com/javafx/maven/fix-classpath.html)
+
+	Run: mvn com.zenjava:javafx-maven-plugin:2.0:fix-classpath
+
+*If this command fails, it because you must run it in admin mode OR if in a linux type environment, ran as sudo (i.e. sudo mvn com.zenjava:javafx-maven-plugin:2.0:fix-classpath)
+
+4.) Once successful, enter:
+	mvn clean packages
+
+	*mvn install, can also be used, if you wish to install the jars in your .m2 local repository
+
+5.) This will create a two jars in a target folder within the project directory.
+	TrigamKata-1-jar-with-dependencies.jar 
+	TrigamKata-1.jar
+
+    One jar is the program built with all the necessary dependencies and the other is the program is the same program with the dependencies.
+
+6.) To execute the program, cd into the target folder with the jars and type:
+	java -jar TrigamKata-1-jar-with-dependencies.jar 
+
+——————————-
+Running from Eclipse (Requires Eclipse IDE for Java EE Developers to be installed which has the maven plugin)
+
+1.) If maven is not installed on your computer. Please refer to http://maven.apache.org/guides/getting-started/maven-in-five-minutes.html to install
+
+2.) This project takes advantage of a JavaFX library to create a User Interface.  This requires class path fix on fresh machine. Type and run the following commands in the command line. (More information on the fix can be found at http://zenjava.com/javafx/maven/fix-classpath.html)
+	
+	mvn com.zenjava:javafx-maven-plugin:2.0:fix-classpath
+
+3.) With Eclipse running, import “Exist Maven projects” selecting the location of the project directory with the pom.xml file.
+
+4.) In the project explorer right click and run the as Java application the java class, TrigramApp.java under the com.morgan.jp.app package in the src/main/resource folder. 

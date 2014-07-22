@@ -1,6 +1,5 @@
 package com.morgan.jp.trigram.generate;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -328,7 +327,7 @@ public class TrigramTextGenerator implements TextGenerator {
 	 *            List of strings from non-special keys
 	 * @return random words form the two lists
 	 */
-	public String getWordFromSpecialCaseKey(String searchKey,
+	private String getWordFromSpecialCaseKey(String searchKey,
 			String nextKeyStart, List<String> specialCaseList,
 			List<String> regularCaseList) {
 		log.debug("getWordFromSpecialCaseKey method");
