@@ -1,4 +1,4 @@
-INSTALL GUIDE
+INSTALL GUIDE (Demo videos of install can found at http://tony-tran.com/trigram)
 =====================
 Running from Command line (Requires maven to be installed on machine)
 
