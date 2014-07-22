@@ -30,8 +30,7 @@ public class TrigramMapAdjWordDictionaryTest {
 	@Test
 	public void loadAdjWordDictionary_ThreeWordInputFile_DictionaryCreated()
 			throws Exception {
-		URL inputURL = getClass().getResource(
-				File.separator + "three_word_input.txt");
+		URL inputURL = getClass().getResource("/three_word_input.txt");
 
 		String inputLocation = inputURL.getPath();
 		File inputFile = new File(inputLocation);
@@ -53,8 +52,7 @@ public class TrigramMapAdjWordDictionaryTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void loadAdjWordDictionary_TwoWordInputFile_IllegalArgumentException()
 			throws Exception {
-		URL inputURL = getClass().getResource(
-				File.separator + "two_word_input.txt");
+		URL inputURL = getClass().getResource("/two_word_input.txt");
 		String inputLocation = inputURL.getPath();
 		File inputFile = new File(inputLocation);
 
@@ -97,8 +95,7 @@ public class TrigramMapAdjWordDictionaryTest {
 	 */
 	@Test
 	public void getRandomKey_ThreeWordInputFile_Null() throws Exception {
-		URL inputURL = getClass().getResource(
-				File.separator + "three_word_input.txt");
+		URL inputURL = getClass().getResource("/three_word_input.txt");
 		String inputLocation = inputURL.getPath();
 		File inputFile = new File(inputLocation);
 
@@ -118,8 +115,7 @@ public class TrigramMapAdjWordDictionaryTest {
 	 */
 	@Test
 	public void size_ThreeWordInputFile_OneSizedList() throws Exception {
-		URL inputURL = getClass().getResource(
-				File.separator + "three_word_input.txt");
+		URL inputURL = getClass().getResource("/three_word_input.txt");
 		String inputLocation = inputURL.getPath();
 		File inputFile = new File(inputLocation);
 
@@ -141,8 +137,7 @@ public class TrigramMapAdjWordDictionaryTest {
 		List<String> expected = new ArrayList<String>();
 		expected.add("I");
 
-		URL inputURL = getClass().getResource(
-				File.separator + "three_word_input.txt");
+		URL inputURL = getClass().getResource("/three_word_input.txt");
 		String inputLocation = inputURL.getPath();
 		File inputFile = new File(inputLocation);
 
@@ -166,8 +161,7 @@ public class TrigramMapAdjWordDictionaryTest {
 		List<String> expected = new ArrayList<String>();
 		expected.add("I");
 
-		URL inputURL = getClass().getResource(
-				File.separator + "three_word_input.txt");
+		URL inputURL = getClass().getResource("/three_word_input.txt");
 		String inputLocation = inputURL.getPath();
 		File inputFile = new File(inputLocation);
 
@@ -191,8 +185,7 @@ public class TrigramMapAdjWordDictionaryTest {
 	 */
 	@Test
 	public void containsKey_StringArrayKey_True() throws Exception {
-		URL inputURL = getClass().getResource(
-				File.separator + "three_word_input.txt");
+		URL inputURL = getClass().getResource("/three_word_input.txt");
 		String inputLocation = inputURL.getPath();
 		File inputFile = new File(inputLocation);
 
@@ -203,10 +196,10 @@ public class TrigramMapAdjWordDictionaryTest {
 		input.add("I");
 		input.add("wish");
 
-		assertEquals("Test failed. Should only return true",
-				true, trigramDictionary.containsKey(input));
+		assertEquals("Test failed. Should only return true", true,
+				trigramDictionary.containsKey(input));
 	}
-	
+
 	/**
 	 * Test containsKey method with string input. True should be result
 	 * 
@@ -215,17 +208,15 @@ public class TrigramMapAdjWordDictionaryTest {
 	 */
 	@Test
 	public void containsKey_StringKey_True() throws Exception {
-		URL inputURL = getClass().getResource(
-				File.separator + "three_word_input.txt");
+		URL inputURL = getClass().getResource("/three_word_input.txt");
 		String inputLocation = inputURL.getPath();
 		File inputFile = new File(inputLocation);
 
 		TrigramMapAdjWordDictionary trigramDictionary = new TrigramMapAdjWordDictionary();
 		trigramDictionary.loadAdjWordDictionary(inputFile);
 
-
-		assertEquals("Test failed. Should return true",
-				true, trigramDictionary.containsKey("I wish"));
+		assertEquals("Test failed. Should return true", true,
+				trigramDictionary.containsKey("I wish"));
 	}
 
 }

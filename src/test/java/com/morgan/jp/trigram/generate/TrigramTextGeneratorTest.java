@@ -31,8 +31,7 @@ public class TrigramTextGeneratorTest {
 	 */
 	@Before
 	public void testSetup() throws Exception {
-		URL inputURL = getClass().getResource(
-				File.separator + "three_word_input.txt");
+		URL inputURL = getClass().getResource("/three_word_input.txt");
 		String inputLocation = inputURL.getPath();
 		File inputFile = new File(inputLocation);
 

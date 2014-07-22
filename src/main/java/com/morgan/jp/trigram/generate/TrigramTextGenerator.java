@@ -51,8 +51,7 @@ public class TrigramTextGenerator implements TextGenerator {
 			this.adjWordDictionary = adjWordDictionary;
 		}
 
-		prop.load(getClass().getResourceAsStream(
-				File.separator + "trigram.properties"));
+		prop.load(getClass().getResourceAsStream("/trigram.properties"));
 
 		punctuationList = new ArrayList<Character>();
 		punctuationList.add('?');
