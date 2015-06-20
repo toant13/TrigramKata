@@ -15,7 +15,7 @@ Running from Command line (Requires maven to be installed on machine)
 *If this command fails, it because you must run it in admin mode OR if in a linux type environment, ran as sudo (i.e. sudo mvn com.zenjava:javafx-maven-plugin:2.0:fix-classpath)
 
 4.) Once successful, enter:
-	mvn clean packages
+	mvn clean package
 
 	*mvn install, can also be used, if you wish to install the jars in your .m2 local repository
 
